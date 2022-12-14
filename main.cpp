@@ -72,7 +72,7 @@ int main() {
   int add1, add2, sub1, sub2, mult1, mult2, div1, div2, wait, errors, pow1,
       pow2;
   string custom = "false";
-  string version = "6.9.03";
+  string version = "7.7.09";
   string customCOLOR = "WHITE '0m'";
   int loop = 1;
   int prnt = 0;
