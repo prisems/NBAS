@@ -68,7 +68,8 @@ void help() {
 
 int main() {
   system("clear");
-  string input, comment, print, comma, color, get, inputVAL, if1, if2, ifc, do1, do2, doc, ifcheck, ifdo;
+  string input, comment, print, comma, color, get, inputVAL, if1, if2, ifc, do1,
+      do2, doc, ifcheck, ifdo;
   int add1, add2, sub1, sub2, mult1, mult2, div1, div2, wait, errors, pow1,
       pow2;
   string custom = "false";
@@ -109,7 +110,6 @@ int main() {
            << "pkg.custom: " << custom << endl
            << "custom.colorSET: " << customCOLOR << "\033[0m";
     } else if (input == "REPEAT") {
-      // wip
       // format: REPEAT #
       // would loop following tags # of times
     } else if (input == "LINE") {
@@ -150,53 +150,56 @@ int main() {
       }
     } else if (input == "INPUTVAL") {
       cout << inputVAL;
-    } else if(input == "DOES"){
+    } else if (input == "DOES") {
       cin >> do1;
       cin >> doc;
       cin >> do1;
-      if(doc == "="){
-        if(do1 == do2){
+      if (doc == "=") {
+        if (do1 == do2) {
           cout << "'true'";
-        } else if (do1 != do2){
-        cout << "'false'";  
+        } else if (do1 != do2) {
+          cout << "'false'";
         }
-      } else if(doc == "!="){
-        if(do1!=do2){
+      } else if (doc == "!=") {
+        if (do1 != do2) {
           cout << "'true'";
-        } else if(do1 == do2){
+        } else if (do1 == do2) {
           cout << "'false'";
         } else {
           cout << "\033[31m"
-             << "\033[101m";
-        cout << "ERROR 'UNKNOWN'" << endl;
-        cout << "\033[0m";
-        errors = errors + 1;
+               << "\033[101m";
+          cout << "ERROR 'UNKNOWN'" << endl;
+          cout << "\033[0m";
+          errors = errors + 1;
         }
       }
-    } else if(input == "IF"){
-     // ifc if1 if2 ifcheck ifdo
+    } else if (input == "IF") {
+      // ifc if1 if2 ifcheck ifdo
       cin >> if1;
       cin >> ifc;
       cin >> if2;
       cin >> ifdo;
-      if(ifdo == "DO"){
-        cin>>ifdo;
+      if (ifdo == "DO") {
+        cin >> ifdo;
       }
-      if(ifc == "="){
-        if(if1 == if2){
+      if (ifc == "=") {
+        if (if1 == if2) {
           input = ifdo;
-        } else {}
-      } else if(ifc == "!="){
-        if(if1 != if2){
-          
-        } else if(if1 == if2){} else{cout << "\033[31m"
-             << "\033[101m";
-        cout << "ERROR 409, TRY: '=' '!='" << endl;
-        cout << "\033[0m";
-        errors = errors + 1;}
+        } else {
+        }
+      } else if (ifc == "!=") {
+        if (if1 != if2) {
+
+        } else if (if1 == if2) {
+        } else {
+          cout << "\033[31m"
+               << "\033[101m";
+          cout << "ERROR 409, TRY: '=' '!='" << endl;
+          cout << "\033[0m";
+          errors = errors + 1;
+        }
       }
-    }
-    else if (input == "ADD") {
+    } else if (input == "ADD") {
       cin >> add1;
       cin >> comma;
       if (comma == ",") {
