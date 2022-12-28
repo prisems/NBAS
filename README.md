@@ -5,7 +5,13 @@
 
 A console based programming language meant to be like Shell or Bash. 
 
-"HELP" to see list of commands in console.
+Hello World in NBAS:
+
+<code>PRNT Hello, World ;</code>
+
+This code would output the string "Hello, World!" to the console.
+
+To run this program using the interpreter provided in the code you posted, you would need to enter the above code into the interpreter and then press enter to execute it. The interpreter would then read the command and output the string "Hello, World!" to the console.
 <br>
 <br>
 <b>ChatGPT said this about the source code:</b>
