@@ -1,3 +1,8 @@
+// Metadata
+// Author == earthrulerr
+// Name == NBAS
+// NBAS = "Notepad Basic"
+// Description == A programming language created by earthrulerr meant to be Basic and short worded, like Basic.
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
