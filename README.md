@@ -6,9 +6,9 @@
 A console based programming language meant to be like Shell or Bash. 
 
 "HELP" to see list of commands in console.
-
-
-ChatGPT said this about the source code:
+<br>
+<br>
+<b>ChatGPT said this about the source code:</b>
 
 "This code appears to be a program written in C++ that is intended to be an interpreter for a custom programming language called "NBAS". The interpreter reads and executes commands written in this custom language, which include operations such as printing to the console, performing arithmetic, and waiting for a specified amount of time.
 
