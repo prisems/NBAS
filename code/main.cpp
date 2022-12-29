@@ -1,12 +1,17 @@
-// Metadata 
+// Metadata
 // Author == earthrulerr
 // Name == NBAS
 // NBAS = "Notepad Basic"
-// Description == A programming language created by earthrulerr meant to be Basic and short worded, like Basic.
+// Description == A programming language created by earthrulerr meant to be
+// Basic and short worded, like Basic.
 #include <cmath>
+#include <cstdio>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 #include <iostream>
+#include <limits.h>
+#include <stdlib.h>
 #include <string>
 #ifdef _WIN32
 #include <Windows.h>
@@ -15,6 +20,23 @@
 #endif
 using namespace std;
 
+string getOsName() {
+#ifdef _WIN32
+  return "Windows 32-bit";
+#elif _WIN64
+  return "Windows 64-bit";
+#elif __APPLE__ || __MACH__
+  return "Mac OSX";
+#elif __linux__
+  return "Linux";
+#elif __FreeBSD__
+  return "FreeBSD";
+#elif __unix || __unix__
+  return "Unix";
+#else
+  return "Other";
+#endif
+}
 void pkghelp() {
   cout << "\033[93m"
        << "PACKAGES:"
@@ -53,8 +75,16 @@ void help() {
        << "'%20' - Prints a space to console." << endl
        << "'CLR' - Clears program." << endl
        << "'ENT' - Prints a new line to console." << endl
-       << "'SYST' - Reports data." << endl
-       << "'LINE' - Reports current line." << endl
+       << "'$SYST' - Reports data." << endl
+       << "'$LINE' - Reports current line." << endl
+       << "'$USER' - Prints the host name." << endl
+       << "'$OS' - Prints the OS name." << endl
+       << "'$IP' Prints the IP address." << endl
+       << "'$LOC' - Prints location." << endl
+       << "'$TIME' - Prints time (of server)." << endl
+       << "'$CPU $CPUS $CPUM $CPU_ARCH $CPU_SPD $CPU_FREW' all print "
+          "information on CPU."
+       << endl
        << "'PKGHELP' - Help for packages." << endl
        << "\033[93m"
        << "ERRORS:"
@@ -74,11 +104,11 @@ void help() {
 int main() {
   system("clear");
   string input, comment, print, comma, color, get, inputVAL, if1, if2, ifc, do1,
-      do2, doc, ifcheck, ifdo;
+      file, store, do2, doc, ifcheck, ifdo;
   int add1, add2, sub1, sub2, mult1, mult2, div1, div2, wait, errors, pow1,
       pow2;
   string custom = "false";
-  string version = "7.8.11";
+  string version = "8.1.53";
   string customCOLOR = "WHITE '0m'";
   int loop = 1;
   int prnt = 0;
@@ -89,6 +119,7 @@ int main() {
        << "NBAS v:" << version << " main:" << endl
        << "\033[0m";
   while (loop == 1) {
+    ofstream MyFile("code.txt");
     line = line + 1;
     cin >> input;
     if (input == "CMT") {
@@ -106,7 +137,7 @@ int main() {
       cout << " ";
     } else if (input == "ENT") {
       cout << endl;
-    } else if (input == "SYST") {
+    } else if (input == "$SYST") {
       cout << "\033[33m"
            << "version: " << version << endl
            << "author: earthrulerr" << endl
@@ -117,7 +148,7 @@ int main() {
     } else if (input == "REPEAT") {
       // format: REPEAT #
       // would loop following tags # of times
-    } else if (input == "LINE") {
+    } else if (input == "$LINE") {
       cout << line;
     } else if (input == "PRNT") {
       prnt = 1;
@@ -129,6 +160,113 @@ int main() {
           prnt = 0;
         }
       }
+    } else if (input == "$USER") {
+      char hostname[HOST_NAME_MAX];
+      gethostname(hostname, HOST_NAME_MAX);
+      cout << hostname;
+    } else if (input == "$OS") {
+      cout << getOsName();
+    } else if (input == "$CPU") {
+      string cpu_name;
+      char buffer[1024];
+      FILE *pipe = popen(
+          "cat /proc/cpuinfo | grep 'model name' | head -1 | cut -d: -f2-",
+          "r");
+      if (pipe) {
+        while (fgets(buffer, sizeof buffer, pipe) != NULL) {
+          cpu_name += buffer;
+        }
+        pclose(pipe);
+      }
+      cout << cpu_name;
+    } else if (input == "$CPUM") {
+      string cpu_memory;
+      char buffer[1024];
+      FILE *pipe = popen("cat /proc/meminfo | grep 'MemTotal'", "r");
+      if (pipe) {
+        while (fgets(buffer, sizeof buffer, pipe) != NULL) {
+          cpu_memory += buffer;
+        }
+        pclose(pipe);
+      }
+      cout << cpu_memory;
+    } else if (input == "$IP") {
+      string ip_address;
+      char buffer[1024];
+      FILE *pipe = popen("curl -s checkip.dyndns.org | sed -e 's/.*Current IP "
+                         "Address: //' -e 's/<.*$//'",
+                         "r");
+      if (pipe) {
+        while (fgets(buffer, sizeof buffer, pipe) != NULL) {
+          ip_address += buffer;
+        }
+        pclose(pipe);
+      }
+      cout << ip_address;
+    } else if (input == "$CPUS") {
+      string num_cpus;
+      char buffer[1024];
+      FILE *pipe = popen("nproc", "r");
+      if (pipe) {
+        while (fgets(buffer, sizeof buffer, pipe) != NULL) {
+          num_cpus += buffer;
+        }
+        pclose(pipe);
+      }
+      cout << num_cpus;
+    } else if (input == "$CPU_ARCH") {
+      string cpu_architecture;
+      char buffer[1024];
+      FILE *pipe = popen("uname -p", "r");
+      if (pipe) {
+        while (fgets(buffer, sizeof buffer, pipe) != NULL) {
+          cpu_architecture += buffer;
+        }
+        pclose(pipe);
+      }
+      cout << cpu_architecture;
+    } else if (input == "$CPU_FREQ") {
+      string cpu_frequency;
+      char buffer[1024];
+      FILE *pipe = popen("cat /proc/cpuinfo | grep 'cpu MHz'", "r");
+      if (pipe) {
+        while (fgets(buffer, sizeof buffer, pipe) != NULL) {
+          cpu_frequency += buffer;
+        }
+        pclose(pipe);
+      }
+      cout << cpu_frequency;
+    } else if (input == "$CPU_SPD") {
+      string processor_usage;
+      char buffer[1024];
+      FILE *pipe = popen("top -bn1 | grep 'Cpu(s)'", "r");
+      if (pipe) {
+        while (fgets(buffer, sizeof buffer, pipe) != NULL) {
+          processor_usage += buffer;
+        }
+        pclose(pipe);
+      }
+      cout << processor_usage;
+    } else if (input == "$LOC") {
+      string location;
+      char buffer[1024];
+      FILE *pipe = popen("curl -s https://ipapi.co/country_name/", "r");
+      if (pipe) {
+        while (fgets(buffer, sizeof buffer, pipe) != NULL) {
+          location += buffer;
+        }
+        pclose(pipe);
+      }
+      cout << location;
+    } else if (input == "$TIME") {
+      time_t rawtime;
+      struct tm *timeinfo;
+      char time_buffer[80];
+      time(&rawtime);
+      timeinfo = localtime(&rawtime);
+      strftime(time_buffer, sizeof(time_buffer), "%I:%M %p", timeinfo);
+      string time(time_buffer);
+      cout << time;
     } else if (input == "GET") {
       cin >> get;
       if (get == "INPUT") {
