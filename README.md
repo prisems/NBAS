@@ -14,7 +14,8 @@ This code would output the string "Hello, World!" to the console.
 To run this program using the interpreter, you would need to enter the above code into the interpreter and then press enter to execute it. The interpreter would then read the command and output the string "Hello, World!" to the console.
 
 ### Installation 
-<code>git clone https://github.com/EarthRulerr/NBAS</code>
+<code>git clone https://github.com/EarthRulerr/NBAS</code><br>
+or you can access a web compiler here: [NBAS Compiler](https://nbas-compiler.earthrulerr.repl.co/)
 <br>
 <br>
 <b>ChatGPT said this about the source code:</b>
