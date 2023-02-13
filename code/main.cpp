@@ -105,7 +105,7 @@ int main() {
   system("clear");
   string input, comment, print, comma, color, get, inputVAL, if1, if2, ifc, do1,
       file, store, do2, doc, ifcheck, ifdo;
-  int add1, add2, sub1, sub2, mult1, mult2, div1, div2, wait, errors, pow1,
+  int add1, add2, sub1, sub2, mult1, mult2, div1, div2, wait, pow1,
       pow2;
   string custom = "false";
   string version = "8.1.53";
@@ -115,6 +115,7 @@ int main() {
   int cmnt = 0;
   int line = 0;
   int mathL = 0;
+  int errors = 0;
   cout << "\033[90m"
        << "NBAS v:" << version << " main:" << endl
        << "\033[0m";
