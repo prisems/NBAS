@@ -489,7 +489,7 @@ int main() {
         cout << "ERROR 'UNKNOWN TAG (TRY: PRNT)'" << endl;
         errors = errors + 1;
       } else if (input == "line") {
-        cout << "ERROR 'UNKNOWN TAG (TRY: LINE)'" << endl;
+        cout << "ERROR 'UNKNOWN TAG (TRY: $LINE)'" << endl;
         errors = errors + 1;
       } else if (input == "inputval") {
         cout << "ERROR 'UNKNOWN TAG (TRY: INPUTVAL)'" << endl;
@@ -507,13 +507,13 @@ int main() {
         cout << "ERROR 'UNKNOWN TAG (TRY: CMT)'" << endl;
         errors = errors + 1;
       } else if (input == "syst") {
-        cout << "ERROR 'UNKNOWN TAG (TRY: SYST)'" << endl;
+        cout << "ERROR 'UNKNOWN TAG (TRY: $SYST)'" << endl;
         errors = errors + 1;
       } else if (input == "system") {
-        cout << "ERROR 'UNKNOWN TAG (TRY: SYST)'" << endl;
+        cout << "ERROR 'UNKNOWN TAG (TRY: $SYST)'" << endl;
         errors = errors + 1;
       } else if (input == "SYSTEM") {
-        cout << "ERROR 'UNKNOWN TAG (TRY: SYST)'" << endl;
+        cout << "ERROR 'UNKNOWN TAG (TRY: $SYST)'" << endl;
         errors = errors + 1;
       } else if (input == "clear") {
         cout << "ERROR 'UNKNOWN TAG (TRY: CLR)'" << endl;
