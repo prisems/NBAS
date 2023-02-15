@@ -475,6 +475,20 @@ int main() {
         errors = errors + 1;
       } else if (input == "sub") {
         cout << "ERROR 'UNKNOWN TAG (TRY: SUB)'" << endl;
+if (input == "help") {
+        cout << "ERROR 'UNKNOWN TAG (TRY: HELP)'" << endl;
+        errors = errors + 1;
+      } else if (input == "clr") {
+        cout << "ERROR 'UNKNOWN TAG (TRY: CLR)'" << endl;
+        errors = errors + 1;
+      } else if (input == "ent") {
+        cout << "ERROR 'UNKNOWN TAG (TRY: ENT)'" << endl;
+        errors = errors + 1;
+      } else if (input == "add") {
+        cout << "ERROR 'UNKNOWN TAG (TRY: ADD)'" << endl;
+        errors = errors + 1;
+      } else if (input == "sub") {
+        cout << "ERROR 'UNKNOWN TAG (TRY: SUB)'" << endl;
         errors = errors + 1;
       } else if (input == "mul") {
         cout << "ERROR 'UNKNOWN TAG (TRY: MULT)'" << endl;
@@ -515,7 +529,13 @@ int main() {
       } else if (input == "SYSTEM") {
         cout << "ERROR 'UNKNOWN TAG (TRY: $SYST)'" << endl;
         errors = errors + 1;
-      } else if (input == "clear") {
+      } else if (input == "$syst") {
+        cout << "ERROR 'UNKNOWN TAG (TRY: $SYST)'" << endl;
+        errors = errors + 1;
+        } else if (input == "SYST") {
+        cout << "ERROR 'UNKNOWN TAG (TRY: $SYST)'" << endl;
+        errors = errors + 1;
+        } else if (input == "clear") {
         cout << "ERROR 'UNKNOWN TAG (TRY: CLR)'" << endl;
         errors = errors + 1;
       } else if (input == "CLEAR") {
